@@ -3,7 +3,8 @@
 """ 
     This is the code to accompany the Lesson 1 (Naive Bayes) mini-project. 
 
-    Use a Naive Bayes Classifier to identify emails by their authors
+    Use a Naive Bayes Classifier to identify emails by their authors.
+    Use it to make predictions for the test set. What is the accuracy?
     
     authors and labels:
     Sara has label 0
@@ -15,6 +16,10 @@ from time import time
 sys.path.append("../tools/")
 from email_preprocess import preprocess
 
+### import the sklearn module for GaussianNB
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
+
 
 ### features_train are features for the training
 ### features_test are features for testing datasets
@@ -25,9 +30,6 @@ features_train, features_test, labels_train, labels_test = preprocess()
 
 def NBAccuracy(features_train, labels_train, features_test, labels_test):
     """ compute the accuracy of your Naive Bayes classifier """
-    ### import the sklearn module for GaussianNB
-    from sklearn.naive_bayes import GaussianNB
-    from sklearn.metrics import accuracy_score
 
     ### create classifier
     clf = GaussianNB()
@@ -42,18 +44,15 @@ def NBAccuracy(features_train, labels_train, features_test, labels_test):
     pred = clf.predict(features_test)
     print "predict time:", round(time()-t0, 3), "s"
 
-    ### calculate and return the accuracy on the test data
-
-    ## V1
+    ### calculate and return the accuracy on the test data V1
     #accuracy = clf.score(features_test, labels_test)
 
-    ## V2
+    ### calculate and return the accuracy on the test data V2
     accuracy = accuracy_score(labels_test, pred)
-
     return accuracy
 
 
-NBAccuracy(features_train, labels_train, features_test, labels_test)
+accuracy = NBAccuracy(features_train, labels_train, features_test, labels_test)
 
-
+print 'The accuracy is {}'.format(accuracy)
 

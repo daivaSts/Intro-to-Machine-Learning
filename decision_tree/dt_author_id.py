@@ -1,5 +1,4 @@
 #!/usr/bin/python
-
 """ 
     This is the code to accompany the Lesson 3 (decision tree) mini-project.
 
@@ -18,7 +17,7 @@ from sklearn.metrics import accuracy_score
 ### respectively labels_train and labels_test are the corresponding item labels
 features_train, features_test, labels_train, labels_test = preprocess()
 
-### Set min_samples_split=40. It will probably take a while to train. 
+### Set min_samples_split=40.
 def classify(features_train, labels_train,n):
     clf = DecisionTreeClassifier(min_samples_split=n)
 
